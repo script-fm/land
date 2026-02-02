@@ -1,0 +1,1075 @@
+<!--
+  GHID ABDOMEN - GetCourse Block
+  Все стили изолированы через префикс .ga-*
+  Копируй весь код в HTML-блок GetCourse
+-->
+
+<style>
+  /* === ISOLATED STYLES FOR GETCOURSE === */
+  /* Prefix: .ga- (ghid-abdomen) */
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  .ga-wrapper {
+    --ga-bg: #FFFFFF;
+    --ga-bg-alt: #FDF2F8;
+    --ga-text: #1f2937;
+    --ga-text-light: #6b7280;
+    --ga-accent: #ec4899;
+    --ga-accent-dark: #be185d;
+    --ga-accent-light: #fbcfe8;
+
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ga-text);
+    line-height: 1.6;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+
+  .ga-wrapper *, .ga-wrapper *::before, .ga-wrapper *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ga-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* HERO */
+  .ga-hero {
+    padding: 50px 0 60px;
+    background:
+      radial-gradient(ellipse 90% 60% at 20% 30%, rgba(236, 72, 153, 0.22) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, rgba(251, 207, 232, 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 10% 90%, rgba(244, 114, 182, 0.18) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 50% at 60% 60%, rgba(253, 242, 248, 0.6) 0%, transparent 50%),
+      linear-gradient(180deg, #FEE2F0 0%, #FDF2F8 40%, #FFFFFF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ga-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .ga-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ga-logo {
+    display: block;
+    height: 48px;
+    margin-bottom: 16px;
+    filter: brightness(0) saturate(100%) invert(32%) sepia(93%) saturate(2000%) hue-rotate(320deg) brightness(95%) contrast(105%);
+  }
+
+  .ga-badge {
+    display: inline-block;
+    background: var(--ga-accent);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .ga-hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    color: var(--ga-text);
+  }
+
+  .ga-hero h1 span { color: var(--ga-accent); }
+
+  .ga-hero-sub {
+    font-size: 16px;
+    color: var(--ga-text-light);
+    margin-bottom: 14px;
+  }
+
+  .ga-benefits {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .ga-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 0;
+    font-size: 14px;
+  }
+
+  .ga-benefits li::before {
+    content: '\2713';
+    width: 20px;
+    height: 20px;
+    background: var(--ga-accent-light);
+    color: var(--ga-accent-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .ga-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--ga-accent), var(--ga-accent-dark));
+    color: white !important;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    cursor: pointer;
+    border: none;
+  }
+
+  .ga-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+    color: white !important;
+  }
+
+  .ga-hero-img {
+    text-align: center;
+  }
+
+  .ga-hero-img img {
+    width: auto;
+    height: 450px;
+    max-width: none;
+    transform: rotate(12deg);
+  }
+
+  .ga-hero-img-mobile {
+    display: none;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .ga-hero-img-mobile img {
+    max-width: 260px;
+    transform: rotate(12deg);
+  }
+
+  /* AUTHOR */
+  .ga-author {
+    padding: 50px 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 90% 50%, rgba(251, 207, 232, 0.2) 0%, transparent 50%),
+      var(--ga-bg);
+  }
+
+  .ga-author-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    align-items: center;
+    background: linear-gradient(135deg, #fdf2f8, #fff5f9);
+    border-radius: 24px;
+    padding: 32px;
+    border: 1px solid var(--ga-accent-light);
+  }
+
+  .ga-author-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(236, 72, 153, 0.2);
+  }
+
+  .ga-author-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ga-accent);
+    margin-bottom: 6px;
+  }
+
+  .ga-author-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: var(--ga-text);
+  }
+
+  .ga-author-role {
+    color: var(--ga-text-light);
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .ga-author-text {
+    color: var(--ga-text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .ga-author-text strong {
+    color: var(--ga-accent);
+  }
+
+  /* WHAT'S INSIDE */
+  .ga-inside {
+    padding: 60px 0;
+    background:
+      radial-gradient(ellipse 50% 40% at 10% 30%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 40% at 90% 70%, rgba(251, 207, 232, 0.15) 0%, transparent 50%),
+      var(--ga-bg);
+  }
+
+  .ga-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 36px;
+    color: var(--ga-text);
+  }
+
+  .ga-inside-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .ga-inside-card {
+    background: var(--ga-bg-alt);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .ga-inside-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--ga-accent-light);
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.1);
+  }
+
+  .ga-inside-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+
+  .ga-inside-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ga-text);
+  }
+
+  .ga-inside-card p {
+    font-size: 14px;
+    color: var(--ga-text-light);
+    line-height: 1.6;
+  }
+
+  /* PRICING */
+  .ga-pricing {
+    padding: 60px 0;
+    background: linear-gradient(180deg, var(--ga-bg-alt) 0%, #fff5f9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ga-pricing::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .ga-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 760px;
+    margin: 0 auto;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ga-price-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 2px solid #f3f4f6;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .ga-price-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+
+  .ga-price-card.ga-vip {
+    border: 3px solid var(--ga-accent);
+    background: linear-gradient(180deg, #fff 0%, #fdf2f8 100%);
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+  }
+
+  .ga-price-card.ga-vip:hover {
+    transform: scale(1.03) translateY(-4px);
+    box-shadow: 0 20px 50px rgba(236, 72, 153, 0.25);
+  }
+
+  .ga-price-card.ga-vip::before {
+    content: '\2B50 CEL MAI POPULAR';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--ga-accent), var(--ga-accent-dark));
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+  }
+
+  .ga-price-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-align: center;
+    color: var(--ga-text);
+  }
+
+  .ga-price-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--ga-accent);
+    margin-bottom: 6px;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .ga-price-value.ga-free {
+    color: #10b981;
+    font-size: 36px;
+  }
+
+  .ga-price-period {
+    font-size: 12px;
+    color: var(--ga-text-light);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .ga-price-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+    margin: 20px 0;
+  }
+
+  .ga-price-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .ga-price-features li {
+    padding: 10px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #f9fafb;
+  }
+
+  .ga-price-features li:last-child { border-bottom: none; }
+
+  .ga-price-features li .ga-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    background: #f3f4f6;
+    color: #6b7280;
+  }
+
+  .ga-price-card.ga-vip .ga-price-features li .ga-icon {
+    background: var(--ga-accent-light);
+    color: var(--ga-accent-dark);
+  }
+
+  .ga-price-features li.ga-bonus {
+    background: linear-gradient(90deg, #fdf4ff, #fff5f9);
+    margin: 6px -16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-bottom: none;
+    font-weight: 500;
+  }
+
+  .ga-price-features li.ga-bonus .ga-icon {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+  }
+
+  .ga-btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    cursor: pointer;
+    border: none;
+  }
+
+  .ga-btn-primary {
+    background: linear-gradient(135deg, var(--ga-accent), var(--ga-accent-dark));
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  }
+
+  .ga-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+    color: white !important;
+  }
+
+  .ga-btn-outline {
+    background: white;
+    color: var(--ga-text) !important;
+    border: 2px solid #e5e7eb;
+  }
+
+  .ga-btn-outline:hover {
+    border-color: var(--ga-accent);
+    color: var(--ga-accent) !important;
+    background: #fdf2f8;
+  }
+
+  /* TRANSFORMATIONS */
+  .ga-transformations {
+    padding: 60px 0;
+    background: var(--ga-bg-alt);
+  }
+
+  .ga-transformations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .ga-transformation-card {
+    background: transparent;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+
+  .ga-transformation-card:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
+
+  .ga-transformation-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    transition: box-shadow 0.4s ease;
+  }
+
+  .ga-transformation-card:hover img {
+    box-shadow: 0 15px 40px rgba(236, 72, 153, 0.25);
+  }
+
+  /* GIFT */
+  .ga-gift {
+    padding: 40px 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 100%, rgba(251, 207, 232, 0.25) 0%, transparent 50%),
+      var(--ga-bg);
+  }
+
+  .ga-gift-card {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 280px;
+  }
+
+  .ga-gift-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+  }
+
+  .ga-gift-img img {
+    max-width: 100%;
+    max-height: 260px;
+  }
+
+  .ga-gift-content {
+    padding: 36px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ga-gift-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    width: fit-content;
+    box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);
+  }
+
+  .ga-gift h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: var(--ga-text);
+  }
+
+  .ga-gift h3 span { color: var(--ga-accent); }
+
+  .ga-gift-desc {
+    font-size: 15px;
+    color: var(--ga-text-light);
+    margin-bottom: 24px;
+  }
+
+  .ga-gift-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .ga-gift-cta .ga-btn {
+    padding: 18px 60px;
+    font-size: 17px;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+  }
+
+  .ga-gift-urgency {
+    font-size: 14px;
+    color: var(--ga-text);
+    line-height: 1.5;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .ga-gift-urgency strong {
+    color: var(--ga-accent-dark);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* FOOTER */
+  .ga-footer {
+    background: #1a1a2e;
+    padding: 40px 0 30px;
+    color: white;
+  }
+
+  .ga-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .ga-footer-logo img {
+    height: 36px;
+    filter: brightness(0) invert(1);
+  }
+
+  .ga-footer-contact {
+    text-align: center;
+  }
+
+  .ga-footer-phone {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: white;
+  }
+
+  .ga-footer-email {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 8px;
+  }
+
+  .ga-footer-copyright {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ga-footer-trustpilot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
+
+  .ga-trustpilot-stars {
+    display: flex;
+    gap: 2px;
+    color: #00b67a;
+    font-size: 14px;
+  }
+
+  .ga-trustpilot-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .ga-trustpilot-text strong {
+    color: white;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .ga-inside-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ga-hero {
+      padding: 24px 0 30px;
+    }
+
+    .ga-hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .ga-logo {
+      margin: 0 auto 12px;
+      height: 36px;
+    }
+
+    .ga-badge {
+      margin-bottom: 10px;
+      font-size: 10px;
+      padding: 5px 12px;
+    }
+
+    .ga-hero-img { display: none; }
+    .ga-hero-img-mobile { display: block; }
+
+    .ga-benefits {
+      display: inline-block;
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .ga-benefits li {
+      padding: 2px 0;
+      font-size: 13px;
+    }
+
+    .ga-hero h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .ga-hero-sub {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .ga-hero-img-mobile img {
+      filter: drop-shadow(0 8px 20px rgba(236, 72, 153, 0.3));
+    }
+
+    .ga-btn {
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+
+    .ga-author-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding: 24px;
+      gap: 24px;
+    }
+
+    .ga-author-photo img {
+      max-width: 240px;
+      margin: 0 auto;
+    }
+
+    .ga-author-name {
+      font-size: 22px;
+    }
+
+    .ga-inside {
+      padding: 30px 0 50px;
+    }
+
+    .ga-inside-grid {
+      grid-template-columns: 1fr;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .ga-pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 380px;
+    }
+
+    .ga-price-card.ga-vip {
+      transform: scale(1);
+      order: -1;
+    }
+
+    .ga-price-card.ga-vip:hover {
+      transform: translateY(-4px);
+    }
+
+    .ga-transformations-grid {
+      grid-template-columns: 1fr;
+      max-width: 320px;
+      margin: 0 auto;
+      gap: 16px;
+    }
+
+    .ga-gift {
+      padding: 24px 0;
+    }
+
+    .ga-gift-card {
+      grid-template-columns: 1fr;
+      border-radius: 20px;
+      min-height: auto;
+    }
+
+    .ga-gift-img {
+      padding: 24px;
+    }
+
+    .ga-gift-img img {
+      max-height: 180px;
+    }
+
+    .ga-gift-content {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .ga-gift-badge {
+      margin: 0 auto 10px;
+    }
+
+    .ga-gift h3 {
+      font-size: 18px;
+    }
+
+    .ga-gift-cta {
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ga-gift-cta .ga-btn {
+      max-width: 100%;
+      padding: 16px 28px;
+      font-size: 16px;
+    }
+
+    .ga-footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .ga-footer-logo { order: 1; }
+    .ga-footer-contact { order: 2; }
+    .ga-footer-trustpilot { order: 3; }
+  }
+
+  @media (max-width: 500px) {
+    .ga-inside-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- === HERO === -->
+<div class="ga-wrapper">
+  <section class="ga-hero">
+    <div class="ga-container">
+      <div class="ga-hero-inner">
+        <div class="ga-hero-content">
+          <img src="https://fs.gcfiles.net/fileservice/file/thumbnail/h/4d1ab498e07506bea3e31067dad58eec.png/s/600x/a/87136/sc/284" alt="Fitness Mama" class="ga-logo">
+          <span class="ga-badge">Metoda testata de 500K+ femei</span>
+          <h1>Scapa de <span>colacei</span> si de grasimea de pe burtica!</h1>
+          <p class="ga-hero-sub">Ghid detaliat cu metoda testata de mii de femei, cu rezultate in timp record.</p>
+
+          <div class="ga-hero-img-mobile">
+            <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/ghid-cover.png" alt="Ghid Abdomen Plat">
+          </div>
+
+          <ul class="ga-benefits">
+            <li>Burtica capata un aspect estetic</li>
+            <li>Talia se redefineste, arati mai supla</li>
+            <li>Pielea devine mai ferma si tonifiata</li>
+            <li>Te simti plina de energie</li>
+            <li>Mai multa incredere in orice tinuta</li>
+          </ul>
+
+          <a href="#ga-pricing" class="ga-btn">Acceseaza Ghidul</a>
+        </div>
+
+        <div class="ga-hero-img">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/ghid-cover.png" alt="Ghid Abdomen Plat">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === AUTHOR === -->
+  <section class="ga-author">
+    <div class="ga-container">
+      <div class="ga-author-card">
+        <div class="ga-author-photo">
+          <img src="https://static.tildacdn.one/tild3466-3231-4262-b864-343131623735/_1.png" alt="Ina Kishlaru">
+        </div>
+        <div class="ga-author-info">
+          <p class="ga-author-label">Cine te va ghida</p>
+          <h2 class="ga-author-name">Ina Kishlaru</h2>
+          <p class="ga-author-role">Fondatoarea "Fitness Mama"</p>
+          <p class="ga-author-text">
+            A ajutat peste <strong>500.000 de femei</strong> din toata lumea. Mama a 3 copii nascuti prin cezariana, a slabit frumos si sanatos dupa fiecare sarcina. Cu peste 10 ani de experienta, te va ajuta sa obtii corpul la care visezi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === WHAT'S INSIDE === -->
+  <section class="ga-inside">
+    <div class="ga-container">
+      <h2 class="ga-section-title">Ce vei gasi in ghid</h2>
+      <div class="ga-inside-grid">
+        <div class="ga-inside-card">
+          <div class="ga-inside-icon">📖</div>
+          <h3>De ce burtica e zona problema</h3>
+          <p>Intelegi cum functioneaza corpul tau si de ce grasimea se acumuleaza pe abdomen</p>
+        </div>
+        <div class="ga-inside-card">
+          <div class="ga-inside-icon">🎯</div>
+          <h3>Exercitii pentru abdomen</h3>
+          <p>Miscari simple si eficiente pentru presa superioara, inferioara si oblici</p>
+        </div>
+        <div class="ga-inside-card">
+          <div class="ga-inside-icon">⏱️</div>
+          <h3>Planul de antrenament</h3>
+          <p>Exact ce sa faci in fiecare zi, cat timp si cate repetari</p>
+        </div>
+        <div class="ga-inside-card">
+          <div class="ga-inside-icon">🥗</div>
+          <h3>Sfaturi de nutritie</h3>
+          <p>Ce sa mananci si ce sa eviti pentru a vedea rezultate mai repede</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === PRICING === -->
+  <section class="ga-pricing" id="ga-pricing">
+    <div class="ga-container">
+      <h2 class="ga-section-title">Alege pachetul potrivit pentru tine</h2>
+
+      <div class="ga-pricing-grid">
+        <!-- FREE -->
+        <div class="ga-price-card">
+          <h3 class="ga-price-name">Gratuit</h3>
+          <div class="ga-price-value ga-free">0 EUR</div>
+          <p class="ga-price-period">fara obligatii</p>
+          <div class="ga-price-divider"></div>
+          <ul class="ga-price-features">
+            <li><span class="ga-icon">✓</span> Ghidul "Abdomen Plat" (PDF)</li>
+            <li><span class="ga-icon">✓</span> Participare la webinar nutritie</li>
+          </ul>
+          <a href="#" class="ga-btn-block ga-btn-outline">Alege gratuit</a>
+        </div>
+
+        <!-- VIP -->
+        <div class="ga-price-card ga-vip">
+          <h3 class="ga-price-name">VIP</h3>
+          <div class="ga-price-value">9,99 EUR</div>
+          <p class="ga-price-period">plata unica · acces 21 de zile</p>
+          <div class="ga-price-divider"></div>
+          <ul class="ga-price-features">
+            <li><span class="ga-icon">✓</span> Ghidul "Abdomen Plat" (PDF)</li>
+            <li><span class="ga-icon">✓</span> 5 antrenamente video (15 min/zi)</li>
+            <li><span class="ga-icon">✓</span> Acces 21 de zile in platforma</li>
+            <li class="ga-bonus"><span class="ga-icon">🎁</span> Ghid nutritie personalizat</li>
+            <li class="ga-bonus"><span class="ga-icon">🎁</span> 10 retete de smoothie-uri</li>
+            <li class="ga-bonus"><span class="ga-icon">🎁</span> Webinar + inregistrare</li>
+          </ul>
+          <a href="#" class="ga-btn-block ga-btn-primary">Alege VIP</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === TRANSFORMATIONS === -->
+  <section class="ga-transformations">
+    <div class="ga-container">
+      <h2 class="ga-section-title">Transformari din comunitatea noastra</h2>
+      <div class="ga-transformations-grid">
+        <div class="ga-transformation-card">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/case-1.jpg" alt="Transformare">
+        </div>
+        <div class="ga-transformation-card">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/case-2.jpg" alt="Transformare">
+        </div>
+        <div class="ga-transformation-card">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/case-3.jpg" alt="Transformare">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === GIFT BANNER === -->
+  <section class="ga-gift">
+    <div class="ga-container">
+      <div class="ga-gift-card">
+        <div class="ga-gift-img">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/video-mockup.png" alt="Antrenare video">
+        </div>
+        <div class="ga-gift-content">
+          <span class="ga-gift-badge">🎁 Extra Cadou</span>
+          <h3>Inscrie-te acum si primesti <span>gratuit</span> o antrenare video de 20 min</h3>
+          <p class="ga-gift-desc">Faci acasa, fara echipament · Acces 7 zile</p>
+          <div class="ga-gift-cta">
+            <a href="#ga-pricing" class="ga-btn">Vreau cadoul</a>
+            <p class="ga-gift-urgency">Inscrie-te in <strong><span id="ga-timer-min">10</span>:<span id="ga-timer-sec">00</span></strong> si primesti cadoul</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer class="ga-footer">
+    <div class="ga-container">
+      <div class="ga-footer-content">
+        <div class="ga-footer-logo">
+          <img src="https://fs.gcfiles.net/fileservice/file/thumbnail/h/4d1ab498e07506bea3e31067dad58eec.png/s/600x/a/87136/sc/284" alt="Fitness Mama">
+        </div>
+        <div class="ga-footer-contact">
+          <div class="ga-footer-phone">+40 31 229 7765</div>
+          <div class="ga-footer-email">support@fitnesmama.school</div>
+          <div class="ga-footer-copyright">2026 © ALL RIGHTS RESERVED</div>
+        </div>
+        <div class="ga-footer-trustpilot">
+          <div class="ga-trustpilot-stars">★★★★★</div>
+          <div class="ga-trustpilot-text"><strong>4.9</strong> pe Trustpilot</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- === TIMER SCRIPT === -->
+<script>
+(function() {
+  var totalSeconds = 10 * 60;
+  var timerMin = document.getElementById('ga-timer-min');
+  var timerSec = document.getElementById('ga-timer-sec');
+
+  if (!timerMin || !timerSec) return;
+
+  function updateTimer() {
+    if (totalSeconds <= 0) {
+      timerMin.textContent = '00';
+      timerSec.textContent = '00';
+      return;
+    }
+
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = totalSeconds % 60;
+
+    timerMin.textContent = minutes.toString().padStart(2, '0');
+    timerSec.textContent = seconds.toString().padStart(2, '0');
+
+    totalSeconds--;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+})();
+</script>
