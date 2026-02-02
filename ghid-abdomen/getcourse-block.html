@@ -962,7 +962,7 @@
             <li><span class="ga-icon">✓</span> Ghidul "Abdomen Plat" (PDF)</li>
             <li><span class="ga-icon">✓</span> Participare la webinar nutritie</li>
           </ul>
-          <a href="#" class="ga-btn-block ga-btn-outline">Alege gratuit</a>
+          <a href="#" class="ga-btn-block ga-btn-outline" data-gc-widget="1556272" onclick="return false;">Alege gratuit</a>
         </div>
 
         <!-- VIP -->
@@ -979,7 +979,7 @@
             <li class="ga-bonus"><span class="ga-icon">🎁</span> 10 retete de smoothie-uri</li>
             <li class="ga-bonus"><span class="ga-icon">🎁</span> Webinar + inregistrare</li>
           </ul>
-          <a href="#" class="ga-btn-block ga-btn-primary">Alege VIP</a>
+          <a href="#" class="ga-btn-block ga-btn-primary" data-gc-widget="1556273" onclick="return false;">Alege VIP</a>
         </div>
       </div>
     </div>
@@ -1071,5 +1071,24 @@
 
   updateTimer();
   setInterval(updateTimer, 1000);
+})();
+</script>
+
+<!-- === GETCOURSE WIDGETS === -->
+<script id="e9d3266245890d27dbb25c9d5d8f37986fc8a091" src="https://fitnessmama.school/pl/lite/widget/script?id=1556272"></script>
+<script id="2ac88c7690a9b2aa9fc005ce4e5061d0a24b216a" src="https://fitnessmama.school/pl/lite/widget/script?id=1556273"></script>
+
+<script>
+// Bind GetCourse widgets to buttons
+(function() {
+  document.querySelectorAll('[data-gc-widget]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var widgetId = this.getAttribute('data-gc-widget');
+      if (window.gcLiteWidgets && window.gcLiteWidgets[widgetId]) {
+        window.gcLiteWidgets[widgetId].open();
+      }
+    });
+  });
 })();
 </script>
