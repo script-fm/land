@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghid Abdomen Plat — Antrenament Gratuit | Fitness Mama</title>
+  <meta name="description" content="Scapă de colăcei și de grăsimea încăpățânată de pe burtică! Ghid detaliat cu metodă testată de mii de femei.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #FDF2F8;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --accent: #ec4899;
+      --accent-dark: #be185d;
+      --accent-light: #fbcfe8;
+      --border: #f3e8ff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(ellipse 100% 100% at 50% 0%, rgba(253, 242, 248, 0.5) 0%, transparent 50%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 50px 0 60px;
+      background:
+        radial-gradient(ellipse 90% 60% at 20% 30%, rgba(236, 72, 153, 0.22) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 85% 15%, rgba(251, 207, 232, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 10% 90%, rgba(244, 114, 182, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 50% at 60% 60%, rgba(253, 242, 248, 0.6) 0%, transparent 50%),
+        linear-gradient(180deg, #FEE2F0 0%, #FDF2F8 40%, #FFFFFF 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -80px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -30px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(251, 207, 232, 0.4) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      display: block;
+      height: 48px;
+      margin-bottom: 16px;
+      filter: brightness(0) saturate(100%) invert(32%) sepia(93%) saturate(2000%) hue-rotate(320deg) brightness(95%) contrast(105%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 14px;
+    }
+
+    .benefits {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .benefits li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 3px 0;
+      font-size: 14px;
+    }
+
+    .benefits li::before {
+      content: '✓';
+      width: 20px;
+      height: 20px;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: floatBtn 3s ease-in-out infinite;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+      animation-play-state: paused;
+    }
+
+    @keyframes floatBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .hero-img-desktop {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-desktop img {
+      width: auto;
+      height: 450px;
+      max-width: none;
+      transform: rotate(12deg);
+    }
+
+    .hero-img-mobile {
+      display: none;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .hero-img-mobile img {
+      max-width: 260px;
+      transform: rotate(12deg);
+    }
+
+    /* GIFT SECTION */
+    .gift {
+      padding: 40px 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(251, 207, 232, 0.25) 0%, transparent 50%),
+        var(--bg);
+    }
+
+    .gift-card {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    .gift-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+    }
+
+    .gift-img img {
+      max-width: 100%;
+      max-height: 260px;
+    }
+
+    .gift-content {
+      padding: 36px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .gift-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      width: fit-content;
+      box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);
+    }
+
+    .gift h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .gift h3 span { color: var(--accent); }
+    .desktop-only { display: inline; }
+    .mobile-only { display: none; }
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only { display: inline; }
+    }
+
+    .gift-desc {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .gift-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .gift-cta .btn {
+      padding: 18px 60px;
+      font-size: 17px;
+      width: 100%;
+      max-width: 400px;
+      justify-content: center;
+    }
+
+    .gift-urgency {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .gift-urgency strong {
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .gift {
+        padding: 24px 0;
+      }
+
+      .gift-card {
+        grid-template-columns: 1fr;
+        border-radius: 20px;
+        min-height: auto;
+      }
+
+      .gift-img {
+        padding: 24px;
+      }
+
+      .gift-img img {
+        max-height: 180px;
+      }
+
+      .gift-content {
+        padding: 24px;
+        text-align: center;
+      }
+
+      .gift-badge {
+        margin: 0 auto 10px;
+      }
+
+      .gift h3 {
+        font-size: 18px;
+      }
+
+      .gift-cta {
+        align-items: center;
+        gap: 14px;
+      }
+
+      .gift-cta .btn {
+        max-width: 100%;
+        padding: 16px 28px;
+        font-size: 16px;
+      }
+
+      .gift-urgency {
+        font-size: 14px;
+      }
+
+      .gift-urgency strong {
+        font-size: 16px;
+      }
+    }
+
+    /* AUTHOR */
+    .author {
+      padding: 50px 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 90% 50%, rgba(251, 207, 232, 0.2) 0%, transparent 50%),
+        var(--bg);
+    }
+
+    .author-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      align-items: center;
+      background: linear-gradient(135deg, #fdf2f8, #fff5f9);
+      border-radius: 24px;
+      padding: 32px;
+      border: 1px solid var(--accent-light);
+    }
+
+    .author-photo {
+      position: relative;
+    }
+
+    .author-photo img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(236, 72, 153, 0.2);
+    }
+
+    .author-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .author-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .author-role {
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .author-text {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .author-text strong {
+      color: var(--accent);
+    }
+
+    /* WHAT'S INSIDE */
+    .whats-inside {
+      padding: 60px 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 10% 30%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 40% at 90% 70%, rgba(251, 207, 232, 0.15) 0%, transparent 50%),
+        var(--bg);
+    }
+
+    .inside-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .inside-card {
+      background: var(--bg-alt);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .inside-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-light);
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.1);
+    }
+
+    .inside-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .inside-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .inside-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .inside-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .inside-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+    }
+
+    /* PRICING */
+    .pricing {
+      padding: 60px 0;
+      background: linear-gradient(180deg, var(--bg-alt) 0%, #fff5f9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .price-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 28px;
+      border: 2px solid #f3f4f6;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .price-card.vip {
+      border: 3px solid var(--accent);
+      background: linear-gradient(180deg, #fff 0%, #fdf2f8 100%);
+      transform: scale(1.03);
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+    }
+
+    .price-card.vip:hover {
+      transform: scale(1.03) translateY(-4px);
+      box-shadow: 0 20px 50px rgba(236, 72, 153, 0.25);
+    }
+
+    .price-card.vip::before {
+      content: '⭐ CEL MAI POPULAR';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+    }
+
+    .price-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .price-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .price-value.free {
+      color: #10b981;
+      font-size: 36px;
+    }
+
+    .price-period {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .price-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+      margin: 20px 0;
+    }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .price-features li {
+      padding: 10px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #f9fafb;
+    }
+
+    .price-features li:last-child { border-bottom: none; }
+
+    .price-features li .icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .price-card:not(.vip) .price-features li .icon {
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+
+    .price-card.vip .price-features li .icon {
+      background: var(--accent-light);
+      color: var(--accent-dark);
+    }
+
+    .price-features li.bonus {
+      background: linear-gradient(90deg, #fdf4ff, #fff5f9);
+      margin: 6px -16px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border-bottom: none;
+      font-weight: 500;
+    }
+
+    .price-features li.bonus .icon {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: white;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+      animation: btnShine 3s infinite;
+    }
+
+    @keyframes btnShine {
+      0% { left: -60%; }
+      20% { left: 120%; }
+      100% { left: 120%; }
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--text);
+      border: 2px solid #e5e7eb;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #fdf2f8;
+    }
+
+
+    /* TRANSFORMATIONS */
+    .transformations {
+      padding: 60px 0;
+      background: var(--bg-alt);
+    }
+
+    .transformations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .transformation-card {
+      background: transparent;
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+
+    .transformation-card:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    .transformation-card:hover img {
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.25);
+    }
+
+    .transform-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+    }
+
+    /* FOOTER CTA */
+    .footer-cta {
+      padding: 50px 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      text-align: center;
+      color: white;
+    }
+
+    .footer-cta h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .footer-cta p {
+      opacity: 0.9;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--accent);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #1a1a2e;
+      padding: 40px 0 30px;
+      color: white;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo img {
+      height: 36px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-contact {
+      text-align: center;
+    }
+
+    .footer-phone {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .footer-email {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+
+    .footer-copyright {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-trustpilot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 16px;
+      border-radius: 8px;
+    }
+
+    .trustpilot-stars {
+      display: flex;
+      gap: 2px;
+      color: #00b67a;
+      font-size: 14px;
+    }
+
+    .trustpilot-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .trustpilot-text strong {
+      color: white;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 24px 0 30px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .logo {
+        margin: 0 auto 12px;
+        height: 36px;
+      }
+
+      .badge {
+        margin-bottom: 10px;
+        font-size: 10px;
+        padding: 5px 12px;
+      }
+
+      .hero-img-desktop { display: none; }
+      .hero-img-mobile { display: block; }
+
+      .benefits {
+        display: inline-block;
+        text-align: left;
+        margin-bottom: 16px;
+      }
+
+      .benefits li {
+        padding: 2px 0;
+        font-size: 13px;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .hero-sub {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .hero-img-mobile {
+        margin: 12px 0;
+      }
+
+      .hero-img-mobile img {
+        max-width: 260px;
+        filter: drop-shadow(0 8px 20px rgba(236, 72, 153, 0.3));
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      .author-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 24px;
+        gap: 24px;
+      }
+
+      .author-photo img {
+        max-width: 240px;
+        margin: 0 auto;
+      }
+
+      .author-name {
+        font-size: 22px;
+      }
+
+      .whats-inside {
+        padding: 30px 0 50px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+      }
+
+      .price-card.vip {
+        transform: scale(1);
+        order: -1;
+      }
+
+      .price-card.vip:hover {
+        transform: translateY(-4px);
+      }
+
+      .transformations-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+        gap: 16px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-logo { order: 1; }
+      .footer-contact { order: 2; }
+      .footer-trustpilot { order: 3; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <img src="https://fs.gcfiles.net/fileservice/file/thumbnail/h/4d1ab498e07506bea3e31067dad58eec.png/s/600x/a/87136/sc/284" alt="Fitness Mama" class="logo">
+          <span class="badge">Metoda testată de 500K+ femei</span>
+          <h1>Scapă de <span>colăcei</span> și de grăsimea de pe burtică!</h1>
+          <p class="hero-sub">Ghid detaliat cu metodă testată de mii de femei, cu rezultate în timp record.</p>
+
+          <div class="hero-img-mobile">
+            <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/ghid-cover.png" alt="Ghid Abdomen Plat">
+          </div>
+
+          <ul class="benefits">
+            <li>Burtica capătă un aspect estetic</li>
+            <li>Talia se redefinește, arăți mai suplă</li>
+            <li>Pielea devine mai fermă și tonifiată</li>
+            <li>Te simți plină de energie</li>
+            <li>Mai multă încredere în orice ținută</li>
+          </ul>
+
+          <a href="#pricing" class="btn">Accesează Ghidul</a>
+        </div>
+
+        <div class="hero-img-desktop">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/ghid-cover.png" alt="Ghid Abdomen Plat">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section class="author">
+    <div class="container">
+      <div class="author-card">
+        <div class="author-photo">
+          <img src="https://static.tildacdn.one/tild3466-3231-4262-b864-343131623735/_1.png" alt="Ina Kishlaru">
+        </div>
+        <div class="author-info">
+          <p class="author-label">Cine te va ghida</p>
+          <h2 class="author-name">Ina Kishlaru</h2>
+          <p class="author-role">Fondatoarea „Fitness Mama"</p>
+          <p class="author-text">
+            A ajutat peste <strong>500.000 de femei</strong> din toată lumea. Mamă a 3 copii născuți prin cezariană, a slăbit frumos și sănătos după fiecare sarcină. Cu peste 10 ani de experiență, te va ajuta să obții corpul la care visezi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INSIDE -->
+  <section class="whats-inside">
+    <div class="container">
+      <h2 class="section-title">Ce vei găsi în ghid</h2>
+      <div class="inside-grid">
+        <div class="inside-card">
+          <div class="inside-icon">📖</div>
+          <h3>De ce burtica e zona problemă</h3>
+          <p>Înțelegi cum funcționează corpul tău și de ce grăsimea se acumulează pe abdomen</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-icon">🎯</div>
+          <h3>Exerciții pentru abdomen</h3>
+          <p>Mișcări simple și eficiente pentru presa superioară, inferioară și oblici</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-icon">⏱️</div>
+          <h3>Planul de antrenament</h3>
+          <p>Exact ce să faci în fiecare zi, cât timp și câte repetări</p>
+        </div>
+        <div class="inside-card">
+          <div class="inside-icon">🥗</div>
+          <h3>Sfaturi de nutriție</h3>
+          <p>Ce să mănânci și ce să eviți pentru a vedea rezultate mai repede</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Alege pachetul potrivit pentru tine</h2>
+
+      <div class="pricing-grid">
+        <!-- FREE -->
+        <div class="price-card">
+          <h3 class="price-name">Gratuit</h3>
+          <div class="price-value free">0 €</div>
+          <p class="price-period">fără obligații</p>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li><span class="icon">✓</span> Ghidul „Abdomen Plat" (PDF)</li>
+            <li><span class="icon">✓</span> Participare la webinar nutriție</li>
+          </ul>
+          <a href="#" class="btn-block btn-outline">Alege gratuit</a>
+        </div>
+
+        <!-- VIP -->
+        <div class="price-card vip">
+          <h3 class="price-name">VIP</h3>
+          <div class="price-value">9,99 €</div>
+          <p class="price-period">plată unică · acces 21 de zile</p>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li><span class="icon">✓</span> Ghidul „Abdomen Plat" (PDF)</li>
+            <li><span class="icon">✓</span> 5 antrenamente video (15 min/zi)</li>
+            <li><span class="icon">✓</span> Acces 21 de zile în platformă</li>
+            <li class="bonus"><span class="icon">🎁</span> Ghid nutriție personalizat</li>
+            <li class="bonus"><span class="icon">🎁</span> 10 rețete de smoothie-uri</li>
+            <li class="bonus"><span class="icon">🎁</span> Webinar + înregistrare</li>
+          </ul>
+          <a href="#" class="btn-block btn-primary">Alege VIP</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSFORMATIONS -->
+  <section class="transformations">
+    <div class="container">
+      <h2 class="section-title">Transformări din comunitatea noastră</h2>
+      <div class="transformations-grid">
+        <div class="transformation-card">
+          <div class="transform-photo">
+            <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/case-1.jpg" alt="Transformare">
+          </div>
+        </div>
+
+        <div class="transformation-card">
+          <div class="transform-photo">
+            <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/case-2.jpg" alt="Transformare">
+          </div>
+        </div>
+
+        <div class="transformation-card">
+          <div class="transform-photo">
+            <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/case-3.jpg" alt="Transformare">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIFT BANNER -->
+  <section class="gift">
+    <div class="container">
+      <div class="gift-card">
+        <div class="gift-img">
+          <img src="https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/video-mockup.png" alt="Antrenare video">
+        </div>
+        <div class="gift-content">
+          <span class="gift-badge">🎁 Extra Cadou</span>
+          <h3>Înscrie-te acum și primești <span>gratuit</span><br class="desktop-only"> o&nbsp;antrenare video<br class="mobile-only"> de&nbsp;20&nbsp;min</h3>
+          <p class="gift-desc">Faci acasă, fără echipament · Acces 7 zile</p>
+          <div class="gift-cta">
+            <a href="#pricing" class="btn">Vreau cadoul</a>
+            <p class="gift-urgency">Înscrie-te în <strong><span id="timer-min">10</span>:<span id="timer-sec">00</span></strong> și primești cadoul</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="https://fs.gcfiles.net/fileservice/file/thumbnail/h/4d1ab498e07506bea3e31067dad58eec.png/s/600x/a/87136/sc/284" alt="Fitness Mama">
+        </div>
+        <div class="footer-contact">
+          <div class="footer-phone">+40 31 229 7765</div>
+          <div class="footer-email">support@fitnesmama.school</div>
+          <div class="footer-copyright">2026 © ALL RIGHTS RESERVED</div>
+        </div>
+        <div class="footer-trustpilot">
+          <div class="trustpilot-stars">★★★★★</div>
+          <div class="trustpilot-text"><strong>4.9</strong> pe Trustpilot</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Countdown Timer - 10 minutes
+    (function() {
+      let totalSeconds = 10 * 60; // 10 minutes
+
+      const timerMin = document.getElementById('timer-min');
+      const timerSec = document.getElementById('timer-sec');
+
+      function updateTimer() {
+        if (totalSeconds <= 0) {
+          timerMin.textContent = '00';
+          timerSec.textContent = '00';
+          return;
+        }
+
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+
+        timerMin.textContent = minutes.toString().padStart(2, '0');
+        timerSec.textContent = seconds.toString().padStart(2, '0');
+
+        totalSeconds--;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    })();
+
+  </script>
+
+</body>
+</html>

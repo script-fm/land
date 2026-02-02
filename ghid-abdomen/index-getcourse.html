@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghid Abdomen - GetCourse Export Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #1e293b;
+      padding: 24px;
+      border-right: 1px solid #334155;
+      overflow-y: auto;
+    }
+
+    .sidebar h1 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #f8fafc;
+    }
+
+    .sidebar p {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+
+    .section-label:first-of-type {
+      margin-top: 0;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 16px;
+      background: #334155;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .copy-btn:hover {
+      background: #475569;
+      border-color: #64748b;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+
+    .copy-btn.copied {
+      background: #166534;
+      border-color: #22c55e;
+    }
+
+    .copy-btn .icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .copy-btn .text {
+      flex: 1;
+    }
+
+    .copy-btn .status {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .copy-btn.copied .status {
+      color: #4ade80;
+    }
+
+    .copy-all-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #ec4899, #be185d);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 24px;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    }
+
+    .copy-all-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+    }
+
+    .copy-all-btn.copied {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    }
+
+    .preview {
+      padding: 0;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .preview iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #22c55e;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .instructions {
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 24px;
+    }
+
+    .instructions h3 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #f8fafc;
+    }
+
+    .instructions ol {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.6;
+      padding-left: 16px;
+    }
+
+    .instructions li {
+      margin-bottom: 6px;
+    }
+
+    .instructions code {
+      background: #334155;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .preview {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>GetCourse Export</h1>
+      <p>Click pe butoane pentru a copia blocurile HTML. Lipeste-le in GetCourse constructorul de site-uri.</p>
+
+      <div class="section-label">Stiluri (copiaza primul!)</div>
+      <button class="copy-btn" data-block="styles">
+        <span class="icon">🎨</span>
+        <span class="text">CSS Styles</span>
+        <span class="status">Click to copy</span>
+      </button>
+
+      <div class="section-label">Sectiuni</div>
+      <button class="copy-btn" data-block="hero">
+        <span class="icon">🏠</span>
+        <span class="text">Hero</span>
+        <span class="status">Click to copy</span>
+      </button>
+      <button class="copy-btn" data-block="author">
+        <span class="icon">👤</span>
+        <span class="text">Author</span>
+        <span class="status">Click to copy</span>
+      </button>
+      <button class="copy-btn" data-block="whats-inside">
+        <span class="icon">📦</span>
+        <span class="text">What's Inside</span>
+        <span class="status">Click to copy</span>
+      </button>
+      <button class="copy-btn" data-block="pricing">
+        <span class="icon">💰</span>
+        <span class="text">Pricing</span>
+        <span class="status">Click to copy</span>
+      </button>
+      <button class="copy-btn" data-block="transformations">
+        <span class="icon">✨</span>
+        <span class="text">Transformations</span>
+        <span class="status">Click to copy</span>
+      </button>
+      <button class="copy-btn" data-block="gift">
+        <span class="icon">🎁</span>
+        <span class="text">Gift Banner</span>
+        <span class="status">Click to copy</span>
+      </button>
+      <button class="copy-btn" data-block="footer">
+        <span class="icon">📍</span>
+        <span class="text">Footer</span>
+        <span class="status">Click to copy</span>
+      </button>
+
+      <div class="section-label">JavaScript</div>
+      <button class="copy-btn" data-block="scripts">
+        <span class="icon">⚡</span>
+        <span class="text">Timer Script</span>
+        <span class="status">Click to copy</span>
+      </button>
+
+      <button class="copy-all-btn" data-block="all">
+        📋 Copiaza TOT (HTML complet)
+      </button>
+
+      <div class="instructions">
+        <h3>Instructiuni GetCourse:</h3>
+        <ol>
+          <li>Copiaza mai intai blocul <code>CSS Styles</code></li>
+          <li>In GetCourse, adauga un bloc HTML si lipeste stilurile</li>
+          <li>Adauga blocuri HTML separate pentru fiecare sectiune</li>
+          <li>La final, adauga blocul <code>Timer Script</code> daca folosesti Gift Banner</li>
+        </ol>
+      </div>
+    </aside>
+
+    <main class="preview">
+      <iframe src="index.html" title="Landing Preview"></iframe>
+    </main>
+  </div>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <script>
+    // GitHub raw URL base for images
+    const IMAGE_BASE = 'https://raw.githubusercontent.com/script-fm/land/main/ghid-abdomen/images/';
+
+    // Block definitions
+    const blocks = {
+      styles: `<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FFFFFF;
+    --bg-alt: #FDF2F8;
+    --text: #1f2937;
+    --text-light: #6b7280;
+    --accent: #ec4899;
+    --accent-dark: #be185d;
+    --accent-light: #fbcfe8;
+    --border: #f3e8ff;
+  }
+
+  .gc-section * { margin: 0; padding: 0; box-sizing: border-box; }
+  .gc-section {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  .gc-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .gc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: floatBtn 3s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  }
+
+  .gc-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+    animation-play-state: paused;
+  }
+
+  @keyframes floatBtn {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .gc-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+</style>`,
+
+      hero: `<!-- HERO SECTION -->
+<section class="gc-section gc-hero" style="padding: 50px 0 60px; background: radial-gradient(ellipse 90% 60% at 20% 30%, rgba(236, 72, 153, 0.22) 0%, transparent 50%), radial-gradient(ellipse 70% 50% at 85% 15%, rgba(251, 207, 232, 0.5) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 10% 90%, rgba(244, 114, 182, 0.18) 0%, transparent 50%), radial-gradient(ellipse 80% 50% at 60% 60%, rgba(253, 242, 248, 0.6) 0%, transparent 50%), linear-gradient(180deg, #FEE2F0 0%, #FDF2F8 40%, #FFFFFF 100%); position: relative; overflow: hidden;">
+  <div class="gc-container">
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;">
+      <div>
+        <img src="https://fs.gcfiles.net/fileservice/file/thumbnail/h/4d1ab498e07506bea3e31067dad58eec.png/s/600x/a/87136/sc/284" alt="Fitness Mama" style="display: block; height: 48px; margin-bottom: 16px; filter: brightness(0) saturate(100%) invert(32%) sepia(93%) saturate(2000%) hue-rotate(320deg) brightness(95%) contrast(105%);">
+        <span style="display: inline-block; background: var(--accent); color: white; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">Metoda testata de 500K+ femei</span>
+        <h1 style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; line-height: 1.25; margin-bottom: 12px;">Scapa de <span style="color: var(--accent);">colacei</span> si de grasimea de pe burtica!</h1>
+        <p style="font-size: 16px; color: var(--text-light); margin-bottom: 14px;">Ghid detaliat cu metoda testata de mii de femei, cu rezultate in timp record.</p>
+
+        <ul style="list-style: none; margin-bottom: 20px;">
+          <li style="display: flex; align-items: center; gap: 10px; padding: 3px 0; font-size: 14px;"><span style="width: 20px; height: 20px; background: var(--accent-light); color: var(--accent-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">✓</span> Burtica capata un aspect estetic</li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 3px 0; font-size: 14px;"><span style="width: 20px; height: 20px; background: var(--accent-light); color: var(--accent-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">✓</span> Talia se redefineste, arati mai supla</li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 3px 0; font-size: 14px;"><span style="width: 20px; height: 20px; background: var(--accent-light); color: var(--accent-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">✓</span> Pielea devine mai ferma si tonifiata</li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 3px 0; font-size: 14px;"><span style="width: 20px; height: 20px; background: var(--accent-light); color: var(--accent-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">✓</span> Te simti plina de energie</li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 3px 0; font-size: 14px;"><span style="width: 20px; height: 20px; background: var(--accent-light); color: var(--accent-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">✓</span> Mai multa incredere in orice tinuta</li>
+        </ul>
+
+        <a href="#pricing" class="gc-btn">Acceseaza Ghidul</a>
+      </div>
+
+      <div style="text-align: center;">
+        <img src="${IMAGE_BASE}ghid-cover.png" alt="Ghid Abdomen Plat" style="width: auto; height: 450px; max-width: none; transform: rotate(12deg);">
+      </div>
+    </div>
+  </div>
+</section>`,
+
+      author: `<!-- AUTHOR SECTION -->
+<section class="gc-section gc-author" style="padding: 50px 0; background: radial-gradient(ellipse 60% 50% at 90% 50%, rgba(251, 207, 232, 0.2) 0%, transparent 50%), #FFFFFF;">
+  <div class="gc-container">
+    <div style="display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: center; background: linear-gradient(135deg, #fdf2f8, #fff5f9); border-radius: 24px; padding: 32px; border: 1px solid var(--accent-light);">
+      <div>
+        <img src="https://static.tildacdn.one/tild3466-3231-4262-b864-343131623735/_1.png" alt="Ina Kishlaru" style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(236, 72, 153, 0.2);">
+      </div>
+      <div>
+        <p style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px;">Cine te va ghida</p>
+        <h2 style="font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 4px;">Ina Kishlaru</h2>
+        <p style="color: var(--text-light); font-weight: 500; font-size: 14px; margin-bottom: 16px;">Fondatoarea "Fitness Mama"</p>
+        <p style="color: var(--text); font-size: 15px; line-height: 1.7;">
+          A ajutat peste <strong style="color: var(--accent);">500.000 de femei</strong> din toata lumea. Mama a 3 copii nascuti prin cezariana, a slabit frumos si sanatos dupa fiecare sarcina. Cu peste 10 ani de experienta, te va ajuta sa obtii corpul la care visezi.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>`,
+
+      'whats-inside': `<!-- WHAT'S INSIDE SECTION -->
+<section class="gc-section gc-whats-inside" style="padding: 60px 0; background: radial-gradient(ellipse 50% 40% at 10% 30%, rgba(236, 72, 153, 0.06) 0%, transparent 50%), radial-gradient(ellipse 40% 40% at 90% 70%, rgba(251, 207, 232, 0.15) 0%, transparent 50%), #FFFFFF;">
+  <div class="gc-container">
+    <h2 class="gc-section-title">Ce vei gasi in ghid</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      <div style="background: var(--bg-alt); border-radius: 16px; padding: 28px 24px; text-align: center; transition: all 0.3s ease; border: 1px solid transparent;">
+        <div style="font-size: 40px; margin-bottom: 16px;">📖</div>
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text);">De ce burtica e zona problema</h3>
+        <p style="font-size: 14px; color: var(--text-light); line-height: 1.6;">Intelegi cum functioneaza corpul tau si de ce grasimea se acumuleaza pe abdomen</p>
+      </div>
+      <div style="background: var(--bg-alt); border-radius: 16px; padding: 28px 24px; text-align: center; transition: all 0.3s ease; border: 1px solid transparent;">
+        <div style="font-size: 40px; margin-bottom: 16px;">🎯</div>
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Exercitii pentru abdomen</h3>
+        <p style="font-size: 14px; color: var(--text-light); line-height: 1.6;">Miscari simple si eficiente pentru presa superioara, inferioara si oblici</p>
+      </div>
+      <div style="background: var(--bg-alt); border-radius: 16px; padding: 28px 24px; text-align: center; transition: all 0.3s ease; border: 1px solid transparent;">
+        <div style="font-size: 40px; margin-bottom: 16px;">⏱️</div>
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Planul de antrenament</h3>
+        <p style="font-size: 14px; color: var(--text-light); line-height: 1.6;">Exact ce sa faci in fiecare zi, cat timp si cate repetari</p>
+      </div>
+      <div style="background: var(--bg-alt); border-radius: 16px; padding: 28px 24px; text-align: center; transition: all 0.3s ease; border: 1px solid transparent;">
+        <div style="font-size: 40px; margin-bottom: 16px;">🥗</div>
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Sfaturi de nutritie</h3>
+        <p style="font-size: 14px; color: var(--text-light); line-height: 1.6;">Ce sa mananci si ce sa eviti pentru a vedea rezultate mai repede</p>
+      </div>
+    </div>
+  </div>
+</section>`,
+
+      pricing: `<!-- PRICING SECTION -->
+<section class="gc-section gc-pricing" id="pricing" style="padding: 60px 0; background: linear-gradient(180deg, var(--bg-alt) 0%, #fff5f9 100%); position: relative; overflow: hidden;">
+  <div class="gc-container">
+    <h2 class="gc-section-title">Alege pachetul potrivit pentru tine</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; align-items: start;">
+      <!-- FREE -->
+      <div style="background: white; border-radius: 20px; padding: 32px 28px; border: 2px solid #f3f4f6; position: relative; transition: all 0.3s ease;">
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; text-align: center;">Gratuit</h3>
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 800; color: #10b981; margin-bottom: 6px; line-height: 1; text-align: center;">0 EUR</div>
+        <p style="font-size: 12px; color: var(--text-light); margin-bottom: 20px; text-align: center;">fara obligatii</p>
+        <div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 20px 0;"></div>
+        <ul style="list-style: none; margin-bottom: 24px;">
+          <li style="padding: 10px 0; font-size: 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f9fafb;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: #f3f4f6; color: #6b7280;">✓</span> Ghidul "Abdomen Plat" (PDF)</li>
+          <li style="padding: 10px 0; font-size: 14px; display: flex; align-items: center; gap: 12px;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: #f3f4f6; color: #6b7280;">✓</span> Participare la webinar nutritie</li>
+        </ul>
+        <a href="#" style="display: block; width: 100%; text-align: center; padding: 14px 20px; border-radius: 12px; font-weight: 700; font-size: 15px; transition: all 0.3s ease; text-decoration: none; background: white; color: var(--text); border: 2px solid #e5e7eb;">Alege gratuit</a>
+      </div>
+
+      <!-- VIP -->
+      <div style="background: linear-gradient(180deg, #fff 0%, #fdf2f8 100%); border-radius: 20px; padding: 32px 28px; border: 3px solid var(--accent); position: relative; transform: scale(1.03); box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);">
+        <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 6px 18px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);">⭐ CEL MAI POPULAR</div>
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; text-align: center;">VIP</h3>
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; color: var(--accent); margin-bottom: 6px; line-height: 1; text-align: center;">9,99 EUR</div>
+        <p style="font-size: 12px; color: var(--text-light); margin-bottom: 20px; text-align: center;">plata unica · acces 21 de zile</p>
+        <div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 20px 0;"></div>
+        <ul style="list-style: none; margin-bottom: 24px;">
+          <li style="padding: 10px 0; font-size: 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f9fafb;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: var(--accent-light); color: var(--accent-dark);">✓</span> Ghidul "Abdomen Plat" (PDF)</li>
+          <li style="padding: 10px 0; font-size: 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f9fafb;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: var(--accent-light); color: var(--accent-dark);">✓</span> 5 antrenamente video (15 min/zi)</li>
+          <li style="padding: 10px 0; font-size: 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f9fafb;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: var(--accent-light); color: var(--accent-dark);">✓</span> Acces 21 de zile in platforma</li>
+          <li style="background: linear-gradient(90deg, #fdf4ff, #fff5f9); margin: 6px -16px; padding: 12px 16px; border-radius: 10px; font-size: 14px; display: flex; align-items: center; gap: 12px; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white;">🎁</span> Ghid nutritie personalizat</li>
+          <li style="background: linear-gradient(90deg, #fdf4ff, #fff5f9); margin: 6px -16px; padding: 12px 16px; border-radius: 10px; font-size: 14px; display: flex; align-items: center; gap: 12px; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white;">🎁</span> 10 retete de smoothie-uri</li>
+          <li style="background: linear-gradient(90deg, #fdf4ff, #fff5f9); margin: 6px -16px; padding: 12px 16px; border-radius: 10px; font-size: 14px; display: flex; align-items: center; gap: 12px; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white;">🎁</span> Webinar + inregistrare</li>
+        </ul>
+        <a href="#" style="display: block; width: 100%; text-align: center; padding: 14px 20px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3); position: relative; overflow: hidden;">Alege VIP</a>
+      </div>
+    </div>
+  </div>
+</section>`,
+
+      transformations: `<!-- TRANSFORMATIONS SECTION -->
+<section class="gc-section gc-transformations" style="padding: 60px 0; background: var(--bg-alt);">
+  <div class="gc-container">
+    <h2 class="gc-section-title">Transformari din comunitatea noastra</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      <div style="background: transparent; border-radius: 16px; transition: all 0.4s ease; overflow: hidden;">
+        <img src="${IMAGE_BASE}case-1.jpg" alt="Transformare" style="width: 100%; height: auto; display: block; border-radius: 16px;">
+      </div>
+      <div style="background: transparent; border-radius: 16px; transition: all 0.4s ease; overflow: hidden;">
+        <img src="${IMAGE_BASE}case-2.jpg" alt="Transformare" style="width: 100%; height: auto; display: block; border-radius: 16px;">
+      </div>
+      <div style="background: transparent; border-radius: 16px; transition: all 0.4s ease; overflow: hidden;">
+        <img src="${IMAGE_BASE}case-3.jpg" alt="Transformare" style="width: 100%; height: auto; display: block; border-radius: 16px;">
+      </div>
+    </div>
+  </div>
+</section>`,
+
+      gift: `<!-- GIFT BANNER SECTION -->
+<section class="gc-section gc-gift" style="padding: 40px 0; background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(251, 207, 232, 0.25) 0%, transparent 50%), #FFFFFF;">
+  <div class="gc-container">
+    <div style="display: grid; grid-template-columns: 320px 1fr; background: linear-gradient(135deg, #fdf2f8, #fce7f3); border-radius: 24px; overflow: hidden; min-height: 280px;">
+      <div style="display: flex; align-items: center; justify-content: center; padding: 30px; background: linear-gradient(135deg, #fbcfe8, #f9a8d4);">
+        <img src="${IMAGE_BASE}video-mockup.png" alt="Antrenare video" style="max-width: 100%; max-height: 260px;">
+      </div>
+      <div style="padding: 36px 44px; display: flex; flex-direction: column; justify-content: center;">
+        <span style="display: inline-block; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; padding: 5px 10px; border-radius: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; width: fit-content; box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);">🎁 Extra Cadou</span>
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 10px; line-height: 1.4;">Inscrie-te acum si primesti <span style="color: var(--accent);">gratuit</span> o antrenare video de 20 min</h3>
+        <p style="font-size: 15px; color: var(--text-light); margin-bottom: 24px;">Faci acasa, fara echipament · Acces 7 zile</p>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px;">
+          <a href="#pricing" class="gc-btn" style="padding: 18px 60px; font-size: 17px; width: 100%; max-width: 400px; justify-content: center;">Vreau cadoul</a>
+          <p style="font-size: 14px; color: var(--text); line-height: 1.5; text-align: center; width: 100%; max-width: 400px;">Inscrie-te in <strong style="color: var(--accent-dark); font-weight: 700; font-size: 16px;"><span id="timer-min">10</span>:<span id="timer-sec">00</span></strong> si primesti cadoul</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`,
+
+      footer: `<!-- FOOTER SECTION -->
+<footer class="gc-section gc-footer" style="background: #1a1a2e; padding: 40px 0 30px; color: white;">
+  <div class="gc-container">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+      <div>
+        <img src="https://fs.gcfiles.net/fileservice/file/thumbnail/h/4d1ab498e07506bea3e31067dad58eec.png/s/600x/a/87136/sc/284" alt="Fitness Mama" style="height: 36px; filter: brightness(0) invert(1);">
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">+40 31 229 7765</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">support@fitnesmama.school</div>
+        <div style="font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px;">2026 (c) ALL RIGHTS RESERVED</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 10px 16px; border-radius: 8px;">
+        <div style="display: flex; gap: 2px; color: #00b67a; font-size: 14px;">★★★★★</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.8);"><strong style="color: white;">4.9</strong> pe Trustpilot</div>
+      </div>
+    </div>
+  </div>
+</footer>`,
+
+      scripts: `<script>
+// Countdown Timer - 10 minutes
+(function() {
+  let totalSeconds = 10 * 60; // 10 minutes
+
+  const timerMin = document.getElementById('timer-min');
+  const timerSec = document.getElementById('timer-sec');
+
+  if (!timerMin || !timerSec) return;
+
+  function updateTimer() {
+    if (totalSeconds <= 0) {
+      timerMin.textContent = '00';
+      timerSec.textContent = '00';
+      return;
+    }
+
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    timerMin.textContent = minutes.toString().padStart(2, '0');
+    timerSec.textContent = seconds.toString().padStart(2, '0');
+
+    totalSeconds--;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+})();
+</script>`
+    };
+
+    // Generate full HTML
+    function getFullHTML() {
+      return `<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghid Abdomen Plat — Antrenament Gratuit | Fitness Mama</title>
+  <meta name="description" content="Scapa de colacei si de grasimea incapatanata de pe burtica! Ghid detaliat cu metoda testata de mii de femei.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+${blocks.styles}
+
+${blocks.hero}
+
+${blocks.author}
+
+${blocks['whats-inside']}
+
+${blocks.pricing}
+
+${blocks.transformations}
+
+${blocks.gift}
+
+${blocks.footer}
+
+${blocks.scripts}
+</body>
+</html>`;
+    }
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // Copy to clipboard
+    async function copyToClipboard(text, btn) {
+      try {
+        await navigator.clipboard.writeText(text);
+
+        // Update button state
+        btn.classList.add('copied');
+        const status = btn.querySelector('.status');
+        if (status) status.textContent = 'Copied!';
+
+        showToast('Copied to clipboard!');
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if (status) status.textContent = 'Click to copy';
+        }, 2000);
+      } catch (err) {
+        showToast('Failed to copy');
+        console.error('Copy failed:', err);
+      }
+    }
+
+    // Event listeners
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const blockName = btn.dataset.block;
+        const content = blocks[blockName];
+        if (content) {
+          copyToClipboard(content, btn);
+        }
+      });
+    });
+
+    document.querySelector('.copy-all-btn').addEventListener('click', function() {
+      copyToClipboard(getFullHTML(), this);
+    });
+  </script>
+</body>
+</html>
