@@ -26,6 +26,90 @@
     box-sizing: border-box;
   }
 
+  /* MODAL POPUP */
+  .ga-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ga-modal-overlay.ga-active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .ga-modal {
+    background: white;
+    border-radius: 20px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  .ga-modal-overlay.ga-active .ga-modal {
+    transform: scale(1);
+  }
+
+  .ga-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ga-modal-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ga-text);
+  }
+
+  .ga-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #f3f4f6;
+    color: #6b7280;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .ga-modal-close:hover {
+    background: #e5e7eb;
+    color: var(--ga-text);
+  }
+
+  .ga-modal-body {
+    padding: 24px;
+  }
+
+  .ga-modal-body iframe {
+    width: 100% !important;
+    border: none !important;
+  }
+
   .ga-wrapper *, .ga-wrapper *::before, .ga-wrapper *::after {
     box-sizing: border-box;
     margin: 0;
@@ -962,7 +1046,7 @@
             <li><span class="ga-icon">✓</span> Ghidul "Abdomen Plat" (PDF)</li>
             <li><span class="ga-icon">✓</span> Participare la webinar nutritie</li>
           </ul>
-          <a href="#" class="ga-btn-block ga-btn-outline" data-gc-widget="1556272" onclick="return false;">Alege gratuit</a>
+          <a href="#" class="ga-btn-block ga-btn-outline" onclick="gaOpenModal('free'); return false;">Alege gratuit</a>
         </div>
 
         <!-- VIP -->
@@ -979,7 +1063,7 @@
             <li class="ga-bonus"><span class="ga-icon">🎁</span> 10 retete de smoothie-uri</li>
             <li class="ga-bonus"><span class="ga-icon">🎁</span> Webinar + inregistrare</li>
           </ul>
-          <a href="#" class="ga-btn-block ga-btn-primary" data-gc-widget="1556273" onclick="return false;">Alege VIP</a>
+          <a href="#" class="ga-btn-block ga-btn-primary" onclick="gaOpenModal('vip'); return false;">Alege VIP</a>
         </div>
       </div>
     </div>
@@ -1044,8 +1128,35 @@
   </footer>
 </div>
 
-<!-- === TIMER SCRIPT === -->
+<!-- === MODAL: GRATUIT === -->
+<div class="ga-modal-overlay" id="ga-modal-free">
+  <div class="ga-modal">
+    <div class="ga-modal-header">
+      <div class="ga-modal-title">Pachet Gratuit</div>
+      <button class="ga-modal-close" onclick="gaCloseModal('free')">&times;</button>
+    </div>
+    <div class="ga-modal-body">
+      <script id="e9d3266245890d27dbb25c9d5d8f37986fc8a091" src="https://fitnessmama.school/pl/lite/widget/script?id=1556272"></script>
+    </div>
+  </div>
+</div>
+
+<!-- === MODAL: VIP === -->
+<div class="ga-modal-overlay" id="ga-modal-vip">
+  <div class="ga-modal">
+    <div class="ga-modal-header">
+      <div class="ga-modal-title">Pachet VIP</div>
+      <button class="ga-modal-close" onclick="gaCloseModal('vip')">&times;</button>
+    </div>
+    <div class="ga-modal-body">
+      <script id="2ac88c7690a9b2aa9fc005ce4e5061d0a24b216a" src="https://fitnessmama.school/pl/lite/widget/script?id=1556273"></script>
+    </div>
+  </div>
+</div>
+
+<!-- === SCRIPTS === -->
 <script>
+// Timer - 10 minutes
 (function() {
   var totalSeconds = 10 * 60;
   var timerMin = document.getElementById('ga-timer-min');
@@ -1072,23 +1183,41 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 })();
-</script>
 
-<!-- === GETCOURSE WIDGETS === -->
-<script id="e9d3266245890d27dbb25c9d5d8f37986fc8a091" src="https://fitnessmama.school/pl/lite/widget/script?id=1556272"></script>
-<script id="2ac88c7690a9b2aa9fc005ce4e5061d0a24b216a" src="https://fitnessmama.school/pl/lite/widget/script?id=1556273"></script>
+// Modal functions
+function gaOpenModal(type) {
+  var modal = document.getElementById('ga-modal-' + type);
+  if (modal) {
+    modal.classList.add('ga-active');
+    document.body.style.overflow = 'hidden';
+  }
+}
 
-<script>
-// Bind GetCourse widgets to buttons
-(function() {
-  document.querySelectorAll('[data-gc-widget]').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      var widgetId = this.getAttribute('data-gc-widget');
-      if (window.gcLiteWidgets && window.gcLiteWidgets[widgetId]) {
-        window.gcLiteWidgets[widgetId].open();
-      }
-    });
+function gaCloseModal(type) {
+  var modal = document.getElementById('ga-modal-' + type);
+  if (modal) {
+    modal.classList.remove('ga-active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.ga-modal-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.classList.remove('ga-active');
+      document.body.style.overflow = '';
+    }
   });
-})();
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.ga-modal-overlay.ga-active').forEach(function(modal) {
+      modal.classList.remove('ga-active');
+    });
+    document.body.style.overflow = '';
+  }
+});
 </script>
